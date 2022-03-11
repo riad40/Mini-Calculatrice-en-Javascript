@@ -11,29 +11,45 @@
           <div class="h-screen grid items-center justify-center">
                <div class="border-2 border-gray-500 shadow-2xl rounded-lg">
                     <div class="border-b-2 border-gray-500">
-                         <input disabled type="text" id="result" class="bg-transparent p-8 rounded-t-lg outlinefF-none focus:bg-gray-700 text-3xl text-right text-white font-mono" />
+                         <input disabled type="number" id="myResult" class="bg-transparent p-8 rounded-t-lg outlinefF-none text-3xl text-center text-white font-mono" />
                     </div>
                     <div class="p-6 text-gray-800 grid grid-cols-4 gap-4 text-xl">
-                         <button class="font-mono col-start-1 col-end-4 bg-blue-400 hover:bg-blue-400 rounded p-5">C</button>
-                         <button class="font-mono bg-purple-400 hover:bg-purple-400 rounded p-5">&divide;</button>
-                         <button class="font-mono bg-gray-500 hover:bg-gray-400 rounded p-5">1</button>
-                         <button class="font-mono bg-gray-500 hover:bg-gray-400 rounded p-5">2</button>
-                         <button class="font-mono bg-gray-500 hover:bg-gray-400 rounded p-5">3</button>
-                         <button class="font-mono bg-purple-500 hover:bg-purple-400 rounded p-5">&times;</button>
-                         <button class="font-mono bg-gray-500 hover:bg-gray-400 rounded p-5">4</button>
-                         <button class="font-mono bg-gray-500 hover:bg-gray-400 rounded p-5">5</button>
-                         <button class="font-mono bg-gray-500 hover:bg-gray-400 rounded p-5">6</button>
-                         <button class="font-mono bg-purple-500 hover:bg-purple-400 rounded p-5">&minus;</button>
-                         <button class="font-mono bg-gray-500 hover:bg-gray-400 rounded p-5">7</button>
-                         <button class="font-mono bg-gray-500 hover:bg-gray-400 rounded p-5">8</button>
-                         <button class="font-mono bg-gray-500 hover:bg-gray-400 rounded p-5">9</button>
-                         <button class="font-mono bg-purple-500 hover:bg-purple-400 rounded p-5">&plus;</button>
-                         <button class="font-mono bg-blue-500 hover:bg-blue-400 rounded p-5">0</button>
-                         <button class="font-mono bg-blue-500 hover:bg-blue-400 rounded p-5">,</button>
-                         <button class="font-mono col-start-3 col-end-5 bg-purple-400 hover:bg-purple-400 rounded p-5">&equals;</button>
+                         <button class="font-mono col-start-1 col-end-4 bg-blue-400 hover:bg-blue-400 rounded p-5" onclick="clearScreen()">C</button>
+
+                         <button class="font-mono bg-purple-400 hover:bg-purple-400 rounded p-5" onclick="setOperator('/')">&divide;</button>
+
+                         <button class="font-mono bg-gray-500 hover:bg-gray-400 rounded p-5" onclick="getNumbers(1)">1</button>
+
+                         <button class="font-mono bg-gray-500 hover:bg-gray-400 rounded p-5" onclick="getNumbers(2)">2</button>
+
+                         <button class="font-mono bg-gray-500 hover:bg-gray-400 rounded p-5" onclick="getNumbers(3)">3</button>
+
+                         <button class="font-mono bg-purple-500 hover:bg-purple-400 rounded p-5" onclick="setOperator('*')">&times;</button>
+                         
+                         <button class="font-mono bg-gray-500 hover:bg-gray-400 rounded p-5" onclick="getNumbers(4)">4</button>
+
+                         <button class="font-mono bg-gray-500 hover:bg-gray-400 rounded p-5" onclick="getNumbers(5)">5</button>
+
+                         <button class="font-mono bg-gray-500 hover:bg-gray-400 rounded p-5" onclick="getNumbers(6)">6</button>
+
+                         <button class="font-mono bg-purple-500 hover:bg-purple-400 rounded p-5" onclick="setOperator('-')">&minus;</button>
+
+                         <button class="font-mono bg-gray-500 hover:bg-gray-400 rounded p-5" onclick="getNumbers(7)">7</button>
+
+                         <button class="font-mono bg-gray-500 hover:bg-gray-400 rounded p-5" onclick="getNumbers(8)">8</button>
+
+                         <button class="font-mono bg-gray-500 hover:bg-gray-400 rounded p-5" onclick="getNumbers(9)">9</button>
+
+                         <button class="font-mono bg-purple-500 hover:bg-purple-400 rounded p-5" onclick="setOperator('+')">&plus;</button>
+
+                         <button class="font-mono bg-blue-500 hover:bg-blue-400 rounded p-5" onclick="getNumbers(0)">0</button>
+                         
+                         <button class="font-mono bg-blue-500 hover:bg-blue-400 rounded p-5" onclick="">.</button>
+
+                         <button class="font-mono col-start-3 col-end-5 bg-purple-400 hover:bg-purple-400 rounded p-5" onclick="calculate()">&equals;</button>
                     </div>
                </div>
           </div>
-          <script src="assets/script.js"></script>
+          <script src="assets/script.js"></script>         
      </body>
 </html>
