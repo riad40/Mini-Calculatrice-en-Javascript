@@ -1,85 +1,119 @@
-// alert('js khdama')
+let currentNum = "";
+let previousNum = "";
+let operator = "";
 
-const myResult = document.getElementById('myResult')
+const currentDisplayNumber = document.querySelector(".currentNumber");
+const previousDisplayNumber = document.querySelector(".previousNumber");
 
-let values = {prevNum: null, newNum: null}
-let opType = ''
-let isLastBtnNumber = false
+const clearScreen = document.querySelector('#clear')
+const equal = document.querySelector('#equal')
+const decimal = document.querySelector('#decimal')
+const operators = document.querySelectorAll('#operator')
+const numberButtons = document.querySelectorAll('#number')
 
-function getNumbers(num) {
+numberButtons.forEach((btn) => {
+    btn.addEventListener('click', (e) =>{
+        handleNumber(e.target.innerText)
+    })
+});
 
-    if (isLastBtnNumber) {
-        let screen
-        if (values.newNum) {
-            screen = values.newNum + '' + num
-            values.newNum = screen
-            myResult.value = screen
-        }else {
-            screen = values.prevNum + '' + num
-            values.prevNum = screen
-            myResult.value = screen
-        }
-    }else {
-        
-        myResult.value = num
+clear.addEventListener('click', clearCalculator)
 
-        if (values.prevNum) {
-            values.newNum = num
-        }else{
-            values.prevNum = num 
-        }
+function clearCalculator() {
+    previousNum = ""
+    currentNum = ""
+    operator = ""
+    currentDisplayNumber.innerText = "0"
+    previousDisplayNumber.innerText = ""
+}
 
-        isLastBtnNumber = true
+function handleNumber(number) {
+    // console.log(number)
+    if (previousNum !== "" && currentNum !== "" && operator === "") {
+        previousNum = "";
+        currentDisplayNumber.textContent = currentNum;
+      }
+    if (currentNum.length <= 20) {
+        currentNum += number;
+        currentDisplayNumber.textContent = currentNum;
     }
 }
 
-function setOperator(op) {
-    opType = op
-    console.log(values)
-    isLastBtnNumber = false
+operators.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+        handleOperator(e.target.innerText)
+    })
+})
+
+function handleOperator(op) {
+    // console.log(operator)
+    if (previousNum === "") {
+        previousNum = currentNum
+        operatorCheck(op)
+    } else if (currentNum === "") {
+        operatorCheck(op)
+    } else {
+        calculate()
+        operator = op
+        previousDisplayNumber.innerText = previousNum + " " + operator
+        currentDisplayNumber.innerText = "0"
+    }
 }
 
-function clearScreen() {
-    myResult.value = ''
-    window.location.reload()
-}   
+function operatorCheck(op1) {
+    operator = op1
+    previousDisplayNumber.innerText = previousNum + " " + operator
+    currentDisplayNumber.innerText = "0"
+    currentNum = ""
+}
+
+decimal.addEventListener('click', addDecimal)
+
+function addDecimal() {
+    if (!currentNum.includes(".")) {
+        currentNum += "."
+        currentDisplayNumber.innerText = currentNum
+    }
+}
+
+equal.addEventListener('click', () =>{
+    if (currentNum != "" && previousNum != "") {
+        calculate()
+    }
+})
 
 function calculate() {
-    if (!values.newNum) {
-        return
+    previousNum = Number(previousNum)
+    currentNum  = Number(currentNum)
+
+    switch (operator) {
+        case "+":
+            previousNum += currentNum
+            break;
+        case "-":
+            previousNum -= currentNum
+            break;    
+        case "x":
+            previousNum *= currentNum
+            break;
+        case "/":
+            if (currentNum == 0) {
+                previousNum = "Syntax Error"
+                displayResult()
+                return
+            }
+            previousNum /= currentNum
+            break;
+        default:
+            break;
     }
-    if (values.newNum && values.prevNum && opType) {
+    previousNum = previousNum.toString();
+    displayResult()
+}
 
-        switch (opType) {
-            
-            case '+':
-                const plus = Number(values.prevNum) + Number(values.newNum)
-                myResult.value = plus
-                values.prevNum = plus
-                // console.log(values.prevNum + values.newNum)
-                break;
-            case '-':
-                const minus = Number(values.prevNum) - Number(values.newNum)
-                myResult.value = minus 
-                values.prevNum = minus
-                break;
-            
-            case '*':
-                const times = Number(values.prevNum) * Number(values.newNum)
-                myResult.value = times 
-                values.prevNum = times
-                break;
-            
-            case '/':
-                const devide = Number(values.prevNum) / Number(values.newNum)
-                myResult.value = devide 
-                values.prevNum = devide
-                break;
-
-            default:
-                break;
-        }   
-
-        isLastBtnNumber = false
-    }
+function displayResult() {
+    previousDisplayNumber.innerText = ""
+    currentDisplayNumber.innerText = previousNum
+    currentNum = ""
+    operator = ""   
 }
