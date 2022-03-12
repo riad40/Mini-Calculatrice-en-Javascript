@@ -1,9 +1,9 @@
-let currentNum = "";
-let previousNum = "";
-let operator = "";
+let currentNum = ""
+let previousNum = ""
+let operator = ""
 
-const currentDisplayNumber = document.querySelector(".currentNumber");
-const previousDisplayNumber = document.querySelector(".previousNumber");
+const currentDisplayNumber = document.querySelector(".currentNumber")
+const previousDisplayNumber = document.querySelector(".previousNumber")
 
 const clearScreen = document.querySelector('#clear')
 const equal = document.querySelector('#equal')
@@ -40,7 +40,7 @@ function handleNumber(number) {
 }
 
 operators.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
+    btn.addEventListener('click', (e) => {  
         handleOperator(e.target.innerText)
     })
 })
