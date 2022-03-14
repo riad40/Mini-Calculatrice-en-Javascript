@@ -27,6 +27,8 @@ BONUS : Ajoutez un bouton "backspace", pour que l'utilisateur puisse annuler s'i
 Objectifs d'apprentissage :
 
 Nommer les huit types de données en JavaScript. Intégrer une variable/expression String. Identifier les expressions et les opérateurs. Définir les fonctions et les méthodes. Nommez les trois opérateurs logiques. Comprendre ce que sont les opérateurs de comparaison. Comprendre ce que sont les conditionnels. Manipulation DOM. la gestion des événements .
+
+check out final project right [Here](https://riad40.github.io/Mini-Calculatrice-en-Javascript/)
   
 
 
